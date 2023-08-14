@@ -1,0 +1,14 @@
+{
+  "name": "2023.07.30",
+  "version": "0.0.1",
+  "description": "Start node and npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pavel-Grechishny",
+  "license": "ISC",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  }
+}

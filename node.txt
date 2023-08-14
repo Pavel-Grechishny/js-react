@@ -1,0 +1,38 @@
+node -v
+node fileName.mjs
+
+
+npm -v
+npm --version
+npm init
+npm i cowsay
+npm install
+npm i gulp-pug
+
+npm install --global gulp-cli
+npm install --save-dev gulp
+
+саздать файл - gulpfile.esm.js
+устанвить мод - npm install --save-dev esm
+
+gulp -v
+gulp --version
+gulp --tasks - (посмотреть задачи)
+gulp - (запуск дефолтной задачи)
+gulp myTask - (запуск именованной задачи)
+
+
+====================================
+
+1 - npm init
+2 - npm install --global gulp-cli (один раз на машине)
+3 - npm install --save-dev gulp
+4 - саздать файл - gulpfile.esm.js
+5 - устанвить мод - npm install --save-dev esm
+
+====================================
+
+1 - установка пакета
+2 - импорт в файл
+3 - прописать задачу
+
