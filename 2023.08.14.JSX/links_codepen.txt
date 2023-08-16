@@ -6,3 +6,5 @@ https://unpkg.com/@babel/standalone@7.14.7/babel.min.js
 
 https://codepen.io/Serg-Mt/pen/zYMgjPb?editors=0010
 
+https://ru.react.js.org/docs/add-react-to-a-website.html
+
