@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2023.08.14.jsx</title>
-
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 
@@ -21,7 +21,8 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
     <!-- Use Babel. -->
-    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+    <!-- <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script> -->
+    <script src="babel.min.js"></script>
 
     <!-- Load our React component. -->
     <script type="text/babel">
@@ -30,17 +31,44 @@
         // const word = 'Root render!';
         // const hello = React.createElement('h2',{title: 'okey'}, word.toUpperCase());
 
-        const 
-            word = 'render',
-            hello = <h2 title="okey"> Root <strong> {word.toUpperCase()} </strong> !!! </h2>;
+        const word = 'render';
+        const hello = <h2 title="okey"> Root <strong> {word.toUpperCase()} </strong> !!! </h2>;
 
-        const 
-            app = <React.Fragment>
-                <header>{hello}</header>
-                <main>main</main>
-                <footer>footer</footer>
+        // вызов компонента MyFirstComponent внутри фрагмента React.Fragment
+        const app = <React.Fragment>
+            <header>{hello}</header>
+            <hr/>
+            <main>main</main>
+            <hr/>
+            <MyFirstComponent/>
+            <MyFirstComponent/>
+            <MyFirstComponent/>
+            <hr/>
+            <Hello clss="blue"/>
+            <Hello clss="red" name="frends" exclamations/>
+            <Hello name="world" color="green" background="yellowgreen"/>
+            <Hello size="x-large"/>
+            <hr/>
+            <footer>footer</footer>
             </React.Fragment>;
 
+        // Декларирование компонента MyFirstComponent - возвращает JSX 
+        // Параметры компонента называют - props
+        function MyFirstComponent(){
+            return <div>MyFirstComponent</div>
+        }
+
+        // function Hello(props){
+        //     return <fieldset style={ {color:props.color, background:props.background} }>Hello, {props.name}</fieldset>
+        // }
+
+        // Деструктуризация параметров
+        function Hello({name="NoName", exclamations, color, background, size, clss}){
+            return <fieldset 
+                style={ {background, fontSize:size} } 
+                className={[clss === 'red' ? 'red' : '', clss === 'blue' ? 'blue' : ''].join(' ')}>
+                Hello, {name} {exclamations && '!!!'}</fieldset>
+        }
 
 
         ReactDOM
