@@ -9,19 +9,37 @@
 <body>
 
     <h1>2023.08.14.JSX</h1>
-    <hr>
+    <hr/>
     <!-- ... existing HTML ... -->
     <div id="root">loading...</div>
     <!-- ... existing HTML ... -->
-    <hr>
+    <hr/>
     
-    <!-- Load React. -->
+    <!-- Use React. -->
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Use Babel. -->
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
 
     <!-- Load our React component. -->
-    <!-- <script src="like_button.js"></script> -->
+    <script type="text/babel">
+        "use strict";
+
+        // const word = 'Root render!';
+        // const hello = React.createElement('h2',{title: 'okey'}, word.toUpperCase());
+
+        const 
+            word = 'render',
+            hello = <h2 title="okey"> Root <strong> {word.toUpperCase()} </strong> !!! </h2>;
+
+
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(hello);
+    </script>
 
 </body>
 </html>
