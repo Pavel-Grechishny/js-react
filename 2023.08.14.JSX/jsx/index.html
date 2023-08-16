@@ -34,11 +34,18 @@
             word = 'render',
             hello = <h2 title="okey"> Root <strong> {word.toUpperCase()} </strong> !!! </h2>;
 
+        const 
+            app = <React.Fragment>
+                <header>{hello}</header>
+                <main>main</main>
+                <footer>footer</footer>
+            </React.Fragment>;
+
 
 
         ReactDOM
             .createRoot(document.getElementById('root'))
-            .render(hello);
+            .render(app);
     </script>
 
 </body>
