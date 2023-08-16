@@ -1,0 +1,8 @@
+https://codepen.io/Serg-Mt/pen/ExOqErp?editors=0010
+
+https://ru.legacy.reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html#babel
+
+https://unpkg.com/@babel/standalone@7.14.7/babel.min.js
+
+https://codepen.io/Serg-Mt/pen/zYMgjPb?editors=0010
+
