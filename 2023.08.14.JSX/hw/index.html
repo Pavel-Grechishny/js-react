@@ -3,12 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2023.08.14.jsx</title>
-    
+    <title>Cards humans</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        body{
+            background: #ffffff;
+        }
+        h1, footer{
+            padding: 20px 0;
+            background: rgb(8, 5, 32);
+            color: rgb(233, 225, 225);
+        }
+        main{
+            padding: 30px 0;
+            background: rgb(231, 231, 231);
+        }
+        .wrap{
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            /* padding: 10px; */
+        }
+        .human{
+            background: rgb(247, 247, 247);
+            width: calc(100% / 12 * 4 - 10px / 3 * 4);
+            min-height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 5px 0px grey;
+        }
+        .human:hover{
+            box-shadow: 0px 0px 7px 0px rgb(83, 83, 83);
+        }
+        .human>h3,
+        .human>div{
+            padding: 5px 15px;
+        }
+        div.photo{
+            height: 150px;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 15px;
+            padding: 0;
+        }
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+        .contact{
+            display: flex;
+            justify-content: center;
+        }
+        button{
+            margin: 15px auto;
+            padding: 10px 30px;
+        }
+
+    </style>
 </head>
 <body>
 
+    <h1><div class="wrap">Humans</div></h1>
+   
+    <main>
+        <!-- ... existing HTML ... -->
+        <div id="users" class="wrap"></div>
+        <!-- ... existing HTML ... -->
+    </main>
+
+    <footer><div class="wrap">Footer</div></footer>
     
+    
+    <!-- Use React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Use Babel. -->
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+    <!-- <script src="babel.min.js"></script> -->
+
+    <!-- Load our React component. -->
+    <script type="text/babel">
+        "use strict";
+       
+        const users = <React.Fragment>
+            <Human clss="human" index="0"/>
+            <Human clss="human" index="1"/>
+            <Human clss="human" index="2"/>
+            <Human clss="human" index="3"/>
+            <Human clss="human" index="4"/>
+            <Human clss="human" index="5"/>
+            <Human clss="human" index="6"/>
+        </React.Fragment>;
+
+        ReactDOM
+            .createRoot(document.getElementById('users'))
+            .render(users);
+
+
+        function Human({clss, index}){
+            const user = getHuman(index)
+            return <article className={clss}>
+                <div className="photo"><img src={user['photo']} alt={user['name']}/></div>
+                <h3>{user['name']}</h3>
+                <div>{user['username']}</div>
+                <div>email: {user['email']}</div>
+                <div>city: {user['address']['city']}</div>
+                <div>{user['phone']}</div>
+                <div className="contact"><button>Сontact...</button></div>
+            </article>
+        }
+
+        function getHuman(index){
+            const dbHumans = [
+                {
+                    "id": 1,
+                    "name": "Leanne Graham",
+                    "username": "Bret",
+                    "email": "Sincere@april.biz",
+                    "address": {
+                        "street": "Kulas Light", 
+                        "suite": "Apt. 556", 
+                        "city": "Gwenborough"
+                    },
+                    "phone": "1-770-736-8031 x56442",
+                    "website": "hildegard.org",
+                    "company": {
+                        "name": "Romaguera-Crona",
+                        "catchPhrase": "Multi-layered client-server neural-net",
+                        "bs": "harness real-time e-markets"
+                    },
+                    "photo": "./img/1.webp"
+                },
+                {
+                    "id": 2,
+                    "name": "Kurtis Weissnat",
+                    "username": "Elwyn.Skiles",
+                    "email": "Telly.Hoeger@billy.biz",
+                    "address": {
+                        "street": "Rex Trail",
+                        "suite": "Suite 280",
+                        "city": "Howemouth"
+                    },
+                    "phone": "210.067.6132",
+                    "website": "elvis.io",
+                    "company": {
+                        "name": "Johns Group",
+                        "catchPhrase": "Configurable multimedia task-force",
+                        "bs": "generate enterprise e-tailers"
+                    },
+                    "photo": "./img/2.webp"
+                },
+                {
+                    "id": 3,
+                    "name": "Ervin Howell",
+                    "username": "Antonette",
+                    "email": "Shanna@melissa.tv",
+                    "address": {
+                        "street": "Victor Plains",
+                        "suite": "Suite 879",
+                        "city": "Wisokyburgh"
+                    },
+                    "phone": "010-692-6593 x09125",
+                    "website": "anastasia.net",
+                    "company": {
+                        "name": "Deckow-Crist",
+                        "catchPhrase": "Proactive didactic contingency",
+                        "bs": "synergize scalable supply-chains"
+                    },
+                    "photo": "./img/1.webp"
+                },
+                {
+                    "id": 4,
+                    "name": "Clementine Bauch",
+                    "username": "Samantha",
+                    "email": "Nathan@yesenia.net",
+                    "address": {
+                        "street": "Douglas Extension",
+                        "suite": "Suite 847",
+                        "city": "McKenziehaven"
+                    },
+                    "phone": "1-463-123-4447",
+                    "website": "ramiro.info",
+                    "company": {
+                        "name": "Romaguera-Jacobson",
+                        "catchPhrase": "Face to face bifurcated interface",
+                        "bs": "e-enable strategic applications"
+                    },
+                    "photo": "./img/1.webp"
+                },
+                {
+                    "id": 5,
+                    "name": "Patricia Lebsack",
+                    "username": "Karianne",
+                    "email": "Julianne.OConner@kory.org",
+                    "address": {
+                        "street": "Hoeger Mall",
+                        "suite": "Apt. 692",
+                        "city": "South Elvis"
+                    },
+                    "phone": "493-170-9623 x156",
+                    "website": "kale.biz",
+                    "company": {
+                        "name": "Robel-Corkery",
+                        "catchPhrase": "Multi-tiered zero tolerance productivity",
+                        "bs": "transition cutting-edge web services"
+                    },
+                    "photo": "./img/1.webp"
+                },
+                {
+                    "id": 6,
+                    "name": "Chelsey Dietrich",
+                    "username": "Kamren",
+                    "email": "Lucio_Hettinger@annie.ca",
+                    "address": {
+                        "street": "Skiles Walks",
+                        "suite": "Suite 351",
+                        "city": "Roscoeview"
+                    },
+                    "phone": "(254)954-1289",
+                    "website": "demarco.info",
+                    "company": {
+                        "name": "Keebler LLC",
+                        "catchPhrase": "User-centric fault-tolerant solution",
+                        "bs": "revolutionize end-to-end systems"
+                    },
+                    "photo": "./img/1.webp"
+                },
+                {
+                    "id": 7,
+                    "name": "Mrs. Dennis Schulist",
+                    "username": "Leopoldo_Corkery",
+                    "email": "Karley_Dach@jasper.info",
+                    "address": {
+                        "street": "Norberto Crossing",
+                        "suite": "Apt. 950",
+                        "city": "South Christy"
+                    },
+                    "phone": "1-477-935-8478 x6430",
+                    "website": "ola.org",
+                    "company": {
+                        "name": "Considine-Lockman",
+                        "catchPhrase": "Synchronised bottom-line interface",
+                        "bs": "e-enable innovative applications"
+                    },
+                    "photo": "./img/2.webp"
+                }
+            ]
+            return dbHumans[index]
+        } 
+    </script>
 
 </body>
 </html>
