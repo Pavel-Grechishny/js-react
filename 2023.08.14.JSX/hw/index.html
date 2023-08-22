@@ -95,13 +95,13 @@
         "use strict";
        
         const users = <React.Fragment>
-            <Human clss="human" index="0"/>
-            <Human clss="human" index="1"/>
-            <Human clss="human" index="2"/>
-            <Human clss="human" index="3"/>
-            <Human clss="human" index="4"/>
-            <Human clss="human" index="5"/>
-            <Human clss="human" index="6"/>
+            <Human clss="human" user={getHuman(0)}/>
+            <Human clss="human" user={getHuman(1)}/>
+            <Human clss="human" user={getHuman(2)}/>
+            <Human clss="human" user={getHuman(3)}/>
+            <Human clss="human" user={getHuman(4)}/>
+            <Human clss="human" user={getHuman(5)}/>
+            <Human clss="human" user={getHuman(6)}/>
         </React.Fragment>;
 
         ReactDOM
@@ -109,8 +109,7 @@
             .render(users);
 
 
-        function Human({clss, index}){
-            const user = getHuman(index)
+        function Human({clss, user}){
             return <article className={clss}>
                 <div className="photo"><img src={user['photo']} alt={user['name']}/></div>
                 <h3>{user['name']}</h3>
