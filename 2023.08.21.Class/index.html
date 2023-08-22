@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Class</title>
+    <style>
+        button {margin:0.3em}
+        .big {font-size: xx-large}
+        .border{border: 3px solid red}
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+<!-- Use React and Babel -->
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+
+<!-- Lesson script -->
+<script type="text/babel">"use strict";
+
+    // function LikeButton({start, step, big, bordered}){
+    //     return <button className={[big && 'big', bordered && 'border'].join(' ')}>Like:</button>
+    // }
+
+    class LikeButton extends React.Component{
+        constructor(...props){
+            super(...props);
+            this.state = {likes:0}
+        }
+        render(){
+            return <button 
+                    className={[this.props.big && 'big', this.props.bordered && 'border'].join(' ')}
+                /*  onClick = {evnt => this.setState({likes: this.state.likes + 1})}  */
+                    onClick = {evnt => this.setState(old => ({likes: old.likes + 1}))}>
+                    Like:{this.state.likes}
+                </button>
+        }
+    }
+
+
+
+    const app = <>
+        <LikeButton start="100"/>
+        <LikeButton step="10" big/>
+        <LikeButton bordered/>
+    </>;
+
+
+
+    ReactDOM
+        .createRoot(document.getElementById('root'))
+        .render(app);
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
