@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Class</title>
+</head>
+<body>
+
+    <div id="root"></div>
+
+<!-- Use React and Babel -->
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+
+<!-- Lesson script -->
+<script type="text/babel">"use strict";
+
+    // function LikeButton({start, step, big, bordered}){
+    //     return <button className={[big && 'big', bordered && 'border'].join(' ')}>Like:</button>
+    // }
+
+    class SmartInput extends React.Component{
+        constructor(...props){
+            super(...props);
+        }
+        render(){}
+    }
+
+    const app = <>
+        <SmartInput/>
+        <SmartInput/>
+        <SmartInput/>
+    </>;
+
+    ReactDOM
+        .createRoot(document.getElementById('root'))
+        .render(app);
+
+</script>
+
+
+</body>
+</html>
