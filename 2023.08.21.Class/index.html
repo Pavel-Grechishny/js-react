@@ -7,7 +7,7 @@
     <style>
         button {margin:0.3em}
         .big {font-size: xx-large}
-        .border{border: 3px solid red}
+        .border{outline: 3px solid red}
     </style>
 </head>
 <body>
@@ -29,19 +29,28 @@
     class LikeButton extends React.Component{
         constructor(...props){
             super(...props);
-            this.state = {likes:0}
+            this.state = {
+                likes: +this.props.start || 0,
+                bordered: this.props.bordered,
+            }
         }
         render(){
             return <button 
-                    className={[this.props.big && 'big', this.props.bordered && 'border'].join(' ')}
-                /*  onClick = {evnt => this.setState({likes: this.state.likes + 1})}  */
-                    onClick = {evnt => this.setState(old => ({likes: old.likes + 1}))}>
+                    className={[this.props.big && 'big', this.state.bordered && 'border'].join(' ')}
+                //  onClick = {evnt => this.setState({likes: this.state.likes + 1})}
+                    onClick = { _ => this.setState(old => ({likes: old.likes + (+this.props.step || 1)}))}
+                    onContextMenu = {evnt => {
+                        evnt.preventDefault();
+                    //  this.setState({bordered: !this.state.bordered})
+                        this.setState(old => ({bordered: !old.bordered}))
+                    }}>
                     Like:{this.state.likes}
                 </button>
+                
+                //  setState - 1. меняет состояние данного компонента
+                //             2. помечает компонент, как компонент требущий перерисовки 
         }
     }
-
-
 
     const app = <>
         <LikeButton start="100"/>
@@ -49,17 +58,9 @@
         <LikeButton bordered/>
     </>;
 
-
-
     ReactDOM
         .createRoot(document.getElementById('root'))
         .render(app);
-
-
-
-
-
-
 
 </script>
 
