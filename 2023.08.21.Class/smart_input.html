@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Class</title>
+    <style>
+        button{margin: 5px}
+        p{background: #e9e3e3}
+    </style>
 </head>
 <body>
 
@@ -17,21 +21,43 @@
 <!-- Lesson script -->
 <script type="text/babel">"use strict";
 
-    // function LikeButton({start, step, big, bordered}){
-    //     return <button className={[big && 'big', bordered && 'border'].join(' ')}>Like:</button>
-    // }
+// работа с массивом
+    const list = [
+        '1111111111111111',
+        '2222222222222222',
+        '3333333333333333',
+        '4444444444444444',
+        '5555555555555555'
+    ];
 
+    function Text({propsText}){
+        return <p>{propsText}</p>
+    }
+
+// работа с input
     class SmartInput extends React.Component{
         constructor(...props){
             super(...props);
+            this.state = {text:'-start-'}
         }
-        render(){}
+        render(){
+            return <fieldset>
+                <input 
+                    value = {this.state.text} 
+                    onInput = {evnt => this.setState({text: evnt.target.value})}/>
+                <button onClick = {_ => alert(this.state.text)}>Alert</button> 
+                {this.state.text}   
+            </fieldset>
+        }
     }
 
     const app = <>
         <SmartInput/>
         <SmartInput/>
         <SmartInput/>
+        {list}<br/>
+        <ol>{list.map(str => <li key={str}>{str}</li>)}</ol>
+        {list.map(str => <Text key={str}  propsText={str}/>)}
     </>;
 
     ReactDOM
