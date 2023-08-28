@@ -5,9 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            line-height: 30px;
+            font-family: sans-serif;
+        }
         button {margin:0.3em}
-        .big {font-size: xx-large}
-        .border{outline: 3px solid red}
+        header{
+            color: white;
+            background: rgb(41, 41, 97);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        header>*{
+            padding: 0 10px;
+        }
+        .wrapper{
+            
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .item-todo{
+            display: flex;
+            background: rgb(214, 222, 255);
+            border-bottom: 1px solid grey;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(41, 41, 97);
+        }
+        .item-todo>*{
+            padding: 0 10px;
+        }
+        .item-task{
+            flex-grow: 1;
+        }
+        
     </style>
 </head>
 <body>
@@ -23,13 +58,85 @@
     <!-- HW script -->
     <script type="text/babel">"use strict";
 
-      
-        
-   
+        class ItemToDo extends React.Component{
+            constructor(...props){
+                super(...props);
+                this.state = {
+                    idItem: this.props.idItem,
+                    dtStItem: this.props.dtStItem,
+                    taskItem: this.props.taskItem,
+                    doneItem: this.props.doneItem || 'Ожидание'
+                };
+            }
+            render(){
+                return <div className="item-todo">
+                    <span>{this.state.idItem}</span>
+                    <span>{this.state.dtStItem}</span>
+                    <span className="item-task">{this.state.taskItem}</span>
+                    <span>{this.state.doneItem}</span>
+                    <label>
+                        <input type="checkbox"
+                            onChange = {event => {
+                                let dt = new Date();
+                                this.setState({doneItem: ['Ожидание', 'Выполнено'][+(event.target.checked)]});
+                                this.setState({dtFnItem: dt.getHours() + ":" + dt.getMinutes()})
+                            }}
+                        />
+                    </label>
+                </div>
+            }
+        }
 
+        class ListToDo extends React.Component{
+            constructor(...props){
+                super(...props);
+                this.state = {
+                    todo: [
+                        // {'id': 1, 'task': 'task_1', 'done': false, 'dtStart': 'data start', 'dtFinish': ''}, 
+                        // {'id': 2, 'task': 'task_2', 'done': false, 'dtStart': 'data start', 'dtFinish': ''},
+                        // {'id': 3, 'task': 'task_3', 'done': false, 'dtStart': 'data start', 'dtFinish': ''}
+                    ],
+                    task: '[default]'  
+                };
 
+            }
+            render(){
+                return <div className="wrapper">
+                    <header>
+                        <input 
+                            value = {this.state.task} 
+                            onInput = {evnt => this.setState({task: evnt.target.value})}/>
+                        <button 
+                            onClick = { _ => {
+                                const dt = new Date();
+                                this.setState({todo: [...this.state.todo, {
+                                    'id': this.state.todo.length + 1,
+                                    'task': this.state.task,
+                                    'done': false,
+                                    'dtStart': dt.getHours() + ":" + dt.getMinutes(),
+                                }]});
+                            }}>
+                            Add ToDo
+                        </button>
+                    </header>
+                    {this.state.todo.map(item => 
+                        <ItemToDo 
+                            key={item.id} 
+                            idItem={item.id} 
+                            dtStItem={item.dtStart}
+                            taskItem={item.task} 
+                            doneItem={item.done}
+                        />
+                    )} 
+                </div>   
+            }
+        }
 
-       
+        const app = <ListToDo/>;
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(app);
         
 
 
