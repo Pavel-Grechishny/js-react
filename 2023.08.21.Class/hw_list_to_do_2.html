@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            line-height: 30px;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        button {margin:0.3em}
+        fieldset{
+            height: 40px;
+            border: 1px solid rgb(41, 41, 97);
+            border-top: none;
+        }
+        header{
+            color: white;
+            background: rgb(41, 41, 97);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        header>*{
+            padding: 0 10px;
+        }
+        .wrapper{
+            
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .item-todo{
+            display: flex;
+            background: rgb(214, 222, 255);
+            border-bottom: 1px solid grey;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(41, 41, 97);
+        }
+        .item-todo>*{
+            padding: 0 10px;
+            margin: 0 10px;
+        }
+        .item-task{
+            flex-grow: 1;
+        }
+        
+    </style>
+</head>
+<body>
+  
+
+    <div id="root"></div>
+
+    <!-- Use React and Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+
+    <!-- HW script -->
+    <script type="text/babel">"use strict";
+
+        
+
+        class ListToDo extends React.Component{
+            constructor(...props){
+                super(...props);
+                this.state = {
+                    todo: [{'id': 1, 'task': 'Default task', 'done': false}],
+                    task: 'Default task'
+                };
+            }
+            render(){
+                return <div className="wrapper">
+                    <header>
+                        <input value = {this.state.task} 
+                            onInput = {evnt => this.setState({task: evnt.target.value})}/>
+                        <button onClick = {() => {this.setState({todo: [...this.state.todo, {
+                                    'id': this.state.todo.length + 1,
+                                    'task': this.state.task,
+                                    'done': false
+                                }]});
+                            }}>
+                            Add task
+                        </button>
+                    </header>
+                    <div>
+                        {this.state.todo.map(item => <fieldset className="item-todo" key={item.id}>
+                            <span>{item.id}</span>
+                            <span className="item-task">{item.task}</span>
+                            <label>
+                                <span>{item.done ? "Выполнено" : "Ожидание"}</span>
+                                <input type="checkbox" onChange = {evnt => {
+                                    item.done = evnt.target.checked;
+                                    const message = item.done ? "Выполнено" : "Ожидание"
+                                    evnt.target.closest('label').querySelector("span").textContent = message;}}/>
+                            </label>
+                        </fieldset>)}   
+                    </div>
+                </div>   
+            }
+        }
+
+        const app = <ListToDo/>;
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(app);
+
+    </script>
+</body>
+</html>
